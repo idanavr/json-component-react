@@ -1,0 +1,54 @@
+#dynamic-form {
+    width: 85%;
+    margin: auto;
+
+    .dynamic-form-fields {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-height: 700px;
+    }
+
+    .dynamic-field-component {
+        margin: 0 20px 20px 0;
+        width: 30%;
+        max-width: 250px;
+        min-width: 200px;
+    }
+
+    .dynamic-field-errMsg {
+        position: absolute;
+    }
+
+    .dynamic-form-controllers {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        ;
+    }
+
+    .dynamic-controller-component {
+        flex: 1;
+    }
+
+    .dynamic-controller-component:not(:first-child) {
+        margin-left: 10px;
+    }
+
+    @media only screen and (max-width: 950px) {
+        .dynamic-form-fields {
+            max-height: 1000px;
+        }
+    }
+
+    @media only screen and (max-width: 700px) {
+        .dynamic-form-fields {
+            max-height: none;
+        }
+
+        .dynamic-field-component {
+            width: 100%;
+            max-width: none;
+        }
+    }
+}
