@@ -4,7 +4,7 @@ import InputComponent from './defaultComponents/inputComponent';
 import DDLComponent from './defaultComponents/ddlComponent';
 import ButtonComponent from './defaultComponents/buttonComponent';
 import DynamicComponent from './defaultComponents/dynamicComponent';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function ComponentFactory({ config, onInputChange, onBtnClick }) {
     if (!config) {

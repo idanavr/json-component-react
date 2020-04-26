@@ -4,6 +4,7 @@ import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 export default function InputComponent({ config, onChange }) {
     const { title, value, props, isValid, defaultErrMsg: errMsg, dataTip } = config;
+    
     return (
         <FormGroup className="dynamic-field-component">
             <Label for={props && props.name} data-tip={dataTip}>{title}</Label>
@@ -12,7 +13,7 @@ export default function InputComponent({ config, onChange }) {
                 placeholder={title}
                 value={value || ''}
                 invalid={isValid === false}
-                valid={(value && isValid)}
+                valid={(value ? isValid : false)}
                 onChange={onChange}
             />
             {(value && !isValid && errMsg) ? <FormFeedback className="dynamic-field-errMsg">{errMsg}</FormFeedback> : ''}

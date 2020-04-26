@@ -10,20 +10,15 @@ export function fieldsSetup(fields) {
         fields.sort(sortFieldsByIndex).forEach((field) => {
             const name = (field.props && field.props.name) || index.toString();
             newObject[name] = field;
-            if (!field.props.name) {
-                field.props.name = name;
+            updateField(name, field);
+            if (!field.props.name)
                 index++;
-            }
         });
         return newObject;
     } else if (typeof (fields) === 'object') {
         const sortedFieldKeys = Object.keys(fields).sort((a, b) => sortFieldsByIndex(fields[a], fields[b]));
         sortedFieldKeys.forEach((key) => {
-            const field = fields[key];
-            if (!field.props)
-                field.props = {};
-            field.props.name = key;
-            newObject[key] = field;
+            newObject[key] = fields[key];
         });
         return newObject;
     }

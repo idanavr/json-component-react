@@ -1,17 +1,17 @@
 const webpack = require('webpack');
 const path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const rootFolder = path.join(__dirname, '..');
+const demoFolder = path.join(__dirname, '..', 'demo');
 
 module.exports = {
     devtool: 'inline-source-map',
     entry: [
-        './src/index.js'
+        path.join(demoFolder, 'src/index.js')
     ],
     mode: 'development',
     output: {
-        path: path.join(rootFolder, 'dist'),
+        path: path.join(demoFolder),
         publicPath: '/',
         filename: 'bundle.js'
     },
@@ -23,7 +23,10 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin('main.css'),
-        // new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.join(demoFolder, 'src/index.html'),
+            inject: true
+        }),
         new webpack.HotModuleReplacementPlugin()
     ],
     module: {

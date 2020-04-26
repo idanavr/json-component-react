@@ -24,13 +24,13 @@ export default function FormGenerator({ config }) {
 
     return (
         <div id="dynamic-form">
-            <ReactTooltip className="toolTip" place="left" type="dark" effect="solid" offset={{ left: 40 }} />
             <div className="dynamic-form-fields">
                 {FormFields}
             </div>
             <div className="dynamic-form-controllers">
                 {FormControllers}
             </div>
+            <ReactTooltip className="toolTip" place="left" type="dark" effect="solid" offset={{ left: 40 }} />
         </div>);
 
     function getFormFields() {
@@ -50,13 +50,16 @@ export default function FormGenerator({ config }) {
         if (!controllers || (typeof (controllers) !== 'object'))
             console.error('Controllers are not setup correctly - should be an object');
         const sortedControllerKeys = Object.keys(controllers).sort((a, b) => sortFieldsByIndex(controllers[a], controllers[b]));
-        return sortedControllerKeys.map((key) => (
-            <React.Fragment key={key || uuidv4()}>
-                <ComponentFactory
-                    config={controllers[key]}
-                    onBtnClick={onBtnClick}
-                />
-            </React.Fragment>));
+        return sortedControllerKeys.map((key) => {
+            controllers[key].tag = controllers[key].tag || 'btn-controller';
+            return (
+                <React.Fragment key={key || uuidv4()}>
+                    <ComponentFactory
+                        config={controllers[key]}
+                        onBtnClick={onBtnClick}
+                    />
+                </React.Fragment>);
+        });
     }
 
     // #region onInput process
@@ -84,8 +87,9 @@ export default function FormGenerator({ config }) {
     function updateField(key, newField) {
         if (newField === null || typeof (newField) === 'undefined') {
             delete fieldsEditable[key];
+            fieldsEditable = { ...fieldsEditable };
         } else {
-            newField = newField || {};
+            newField = fieldsEditable[key] ? { ...fieldsEditable[key], ...newField } : newField;
             if (typeof (newField.value) === 'undefined') {
                 const defaultValue = (typeof (newField.defaultValue) !== 'undefined')
                     ? ((newField.defaultValue || typeof (newField.defaultValue) === 'boolean') && newField.defaultValue.toString())
@@ -93,7 +97,9 @@ export default function FormGenerator({ config }) {
                 newField.value = defaultValue;
             }
             newField.isValid = checkFieldValidation(newField, newField.value);
-            newField.props = newField.props || { name: key };
+
+            if (!newField.props)
+                newField.props = { name: key };
             fieldsEditable = {
                 ...fieldsEditable,
                 [key]: { ...fieldsEditable[key], ...newField }
@@ -129,21 +135,38 @@ export default function FormGenerator({ config }) {
 
     function onBtnClick(e, props) {
         const { onClick: configOnClick } = props;
-        const convertedFields = convertFieldsValueType(fields);
-        configOnClick(convertedFields);
+        if (configOnClick) {
+            const convertedFields = convertFieldsValueType(fields);
+            configOnClick(convertedFields, updateField);
+            setFields(fieldsEditable);
+        }
     }
 }
 
+const fieldPropType = PropTypes.shape({
+    tag: PropTypes.string,
+    props: PropTypes.shape({
+        onChange: PropTypes.func,
+        onClick: PropTypes.func,
+    })
+});
+const controllerPropType = PropTypes.shape({
+    tag: PropTypes.string,
+    props: PropTypes.shape({
+        onChange: PropTypes.func,
+        onClick: PropTypes.func,
+    })
+});
+
 FormGenerator.propTypes = {
     config: PropTypes.shape({
-        fields: PropTypes.shape({
-            props: PropTypes.shape({
-                onChange: PropTypes.func,
-                onClick: PropTypes.func,
-            })
-        }),
-        controllers: PropTypes.shape({
-
-        }),
+        fields: PropTypes.oneOfType([
+            fieldPropType,
+            PropTypes.arrayOf(fieldPropType),
+        ]),
+        controllers: PropTypes.oneOfType([
+            controllerPropType,
+            PropTypes.arrayOf(controllerPropType),
+        ]),
     }),
 };

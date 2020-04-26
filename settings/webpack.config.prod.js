@@ -79,6 +79,7 @@ module.exports = {
         extensions: ['.js', '.jsx']
     },
     externals: {
-        'react': 'commonjs react' // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
-    }
+        'react': 'commonjs react',
+       'react-dom': 'commonjs react-dom',
+     },
 };

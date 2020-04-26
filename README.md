@@ -22,7 +22,7 @@ If 'fields' is an object, each field key copied to be props.name
             name: string, // Mandetory and have to be unique or else set to an index!
             type: string, // (optional - if tag is input, default is "text")
             onChange: function (e, fields, updateField) { }, // (optional)
-            onClick: function (fields) { }, // (optional for buttons)
+            onClick: function (fields, updateField) { }, // (optional for buttons)
         },
         options: [ // (for "ddl" tag)
             {
@@ -34,10 +34,11 @@ If 'fields' is an object, each field key copied to be props.name
     }
     ],
     controller: [{
-	    tag: string, // (btn-controller)
-	    content: string,
+        index: number, // (optional) - in order to define the order of the components
+	    tag: string, // (default: btn-controller)
+	    content: string, // (text inside the button)
             props: {
-                onClick: function (fields),
+                onClick: function (fields, updateField) { }, // (optional for buttons)
             },
     }]
 }
