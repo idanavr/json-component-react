@@ -10,7 +10,6 @@ export function fieldsSetup(fields) {
         fields.sort(sortFieldsByIndex).forEach((field) => {
             const name = (field.props && field.props.name) || index.toString();
             newObject[name] = field;
-            updateField(name, field);
             if (!field.props.name)
                 index++;
         });
