@@ -97,9 +97,8 @@ export default function FormGenerator({ config }) {
                 newField.value = defaultValue;
             }
             newField.isValid = checkFieldValidation(newField, newField.value);
+            newField.props = newField.props ? { ...newField.props, name: key } : { name: key };
 
-            if (!newField.props)
-                newField.props = { name: key };
             fieldsEditable = {
                 ...fieldsEditable,
                 [key]: { ...fieldsEditable[key], ...newField }
