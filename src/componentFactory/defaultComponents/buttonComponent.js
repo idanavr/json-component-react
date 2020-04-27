@@ -5,8 +5,9 @@ import { Button } from 'reactstrap';
 export default function ButtonComponent({ config, className, onClick }) {
     const { props, content } = config;
     return (
-        <Button {...props}
-            className={`${className} ${props.className}`}
+        <Button
+            {...props}
+            className={`${className} ${props.className ? props.className : ''}`}
             onClick={(e) => onClick && onClick(e, props)}>
             {content}
         </Button>);

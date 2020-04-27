@@ -17,6 +17,9 @@ const config = {
     },
     habits: {
       title: 'Habits',
+      props: {
+        placeholder: 'Habits placeholder'
+      }
     },
   },
   controllers: {
