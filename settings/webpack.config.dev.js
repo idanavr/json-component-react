@@ -33,8 +33,13 @@ module.exports = {
         rules:
             [{
                 exclude: /node_modules/,
-                test: /\.(js|jsx|tsx)$/,
+                test: /\.(js|jsx)$/,
                 loader: 'babel-loader'
+            },
+            {
+                exclude: /node_modules/,
+                test: /\.(tsx)$/,
+                loader: 'ts-loader'
             },
             {
                 exclude: /node_modules/,
@@ -55,6 +60,6 @@ module.exports = {
             }]
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     }
 };

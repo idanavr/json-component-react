@@ -76,10 +76,10 @@ module.exports = {
             }]
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     externals: {
         'react': 'commonjs react',
-       'react-dom': 'commonjs react-dom',
-     },
+        'react-dom': 'commonjs react-dom',
+    },
 };
