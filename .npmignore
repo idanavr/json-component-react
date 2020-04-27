@@ -13,6 +13,7 @@ example/
 settings/
 demo/
 .eslintrc
+tsconfig.json
 
 // setting files
 .babelrc

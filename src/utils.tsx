@@ -70,7 +70,7 @@ export function convertFieldsValueType(fields: IFormGenerator.IFields) {
     return convertedFields;
 }
 
-export function sortFieldsByIndex(a: IFormGenerator.IField, b: IFormGenerator.IField) {
+export function sortFieldsByIndex(a: IFormGenerator.IField | IFormGenerator.IController, b: IFormGenerator.IField | IFormGenerator.IController) {
     if (!a.index && !b.index)
         return 0;
     else if (!b.index)

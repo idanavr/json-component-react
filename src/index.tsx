@@ -124,7 +124,7 @@ export default function FormGenerator({ config }: IFormGenerator.IParams) {
         };
     }
 
-    function checkFieldValidation(fieldConfig, value) {
+    function checkFieldValidation(fieldConfig: IFormGenerator.IField, value: string) {
         const { required, validation, valueType } = fieldConfig;
         if (required && isEmpty(value))
             return false;
@@ -132,7 +132,7 @@ export default function FormGenerator({ config }: IFormGenerator.IParams) {
     }
     // #endregion
 
-    function onBtnClick(e, props) {
+    function onBtnClick(e: React.FormEvent<HTMLSelectElement>, props: IFormGenerator.IProps) {
         const { onClick: configOnClick } = props;
         if (configOnClick) {
             const convertedFields = convertFieldsValueType(fields);
