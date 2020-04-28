@@ -8,10 +8,12 @@ export function fieldsSetup(fields) {
     if (Array.isArray(fields)) {
         let index = 0;
         fields.sort(sortFieldsByIndex).forEach((field) => {
-            const name = (field.props && field.props.name) || index.toString();
-            newObject[name] = field;
-            if (!field.props.name)
+            if (field.props && field.props.name) {
+                newObject[field.props.name] = field;
+            } else {
+                newObject[index.toString()] = field;
                 index++;
+            }
         });
         return newObject;
     } else if (typeof (fields) === 'object') {
@@ -21,7 +23,8 @@ export function fieldsSetup(fields) {
         });
         return newObject;
     }
-    throw Error('"fields" is not set neither as an object nor array');
+    console.warn(`Fields is ${typeof (fields)} instead of being an object or an array.`);
+    return {};
 }
 
 export function isEmpty(value) {

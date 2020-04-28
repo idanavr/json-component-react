@@ -5,8 +5,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { fieldsSetup, convertValueType, convertFieldsValueType, isEmpty, sortFieldsByIndex } from './utils';
 import ComponentFactory from './componentFactory/componentFactory';
 import ReactTooltip from 'react-tooltip'
+import './formGenerator.scss';
 
 export default function FormGenerator({ config }: IFormGenerator.IParams) {
+    if (!config || typeof (config) !== 'object') {
+        console.warn(`Json Component - config should be an object, received - ${typeof (config)}`);
+        return <></>;
+    }
     const { controllers } = config;
     const [fields, setFields] = useState<IFormGenerator.IFields>(config.fields);
     let fieldsEditable: IFormGenerator.IFields = fields; // look up for a better solution
@@ -34,8 +39,10 @@ export default function FormGenerator({ config }: IFormGenerator.IParams) {
         </div>);
 
     function getFormFields() {
-        if (!fields || (typeof (fields) !== 'object'))
+        if (!fields || (typeof (fields) !== 'object')) {
             console.error('Fields are not setup correctly - should be an object');
+            return <></>;
+        }
         return Object.keys(fields).map((key) => (
             <React.Fragment key={key || uuidv4()}>
                 <ComponentFactory
@@ -47,8 +54,10 @@ export default function FormGenerator({ config }: IFormGenerator.IParams) {
     }
 
     function getFormControllers() {
-        if (!controllers || (typeof (controllers) !== 'object'))
+        if (!controllers || (typeof (controllers) !== 'object')) {
             console.error('Controllers are not setup correctly - should be an object');
+            return <></>;
+        }
         const sortedControllerKeys = Object.keys(controllers).sort((a, b) => sortFieldsByIndex(controllers[a], controllers[b]));
         return sortedControllerKeys.map((key) => {
             controllers[key].tag = controllers[key].tag || 'btn-controller';
