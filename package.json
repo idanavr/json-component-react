@@ -1,6 +1,6 @@
 {
   "name": "json-component-react",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Generate forms in react by using json",
   "main": "dist/index.js",
   "scripts": {
