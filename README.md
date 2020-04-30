@@ -8,12 +8,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "json-component-react/dist/main.css";
 ```
 
-Package support either an object or an array as 'fields'.
+## Try it out to see how easy it is
 
-Important: if 'fields' is an array - the key of the object is props.name and if not exist it's a random index.
-If 'fields' is an object, each field key copied to be props.name.
+[![Sample project for using the package](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/json-component-react-j03v6?file=/src/App.js)
 
-Basic example:
+### Basic example
 
 ``` js
 import JsonComponent from "json-component-react";
@@ -44,11 +43,11 @@ export default function App() {
 }
 ```
 
-Try it out to get a better understanding:
+## Configuration interface:
+Package support either an object or an array as 'fields'.
 
-[![Sample project for using the package](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/json-component-react-j03v6?file=/src/App.js)
-
-Configuration interface:
+❗ if 'fields' is an array - the key of the object is props.name and if not exist it's a random index.
+If 'fields' is an object, each field key copied to be props.name.
 
 ``` ts
 {
@@ -84,5 +83,50 @@ Configuration interface:
             "onClick": function (fields, updateField) { }, // (optional for buttons)
         },
     }]
+}
+```
+## Use Your Own Components
+
+In case you have your own components you want to use, you have to add the prop `components` to Json-Component.
+
+You components will inherit 2 props: 
+- config - all of the configuration you set in your json for this component, so you can make your component as dynamic as possible.
+- onChange - this will enable the onChange method mentioned above, to update the Json-Component State.
+
+### How To Implementation
+
+``` ts
+const components = {
+  [tag]: ReactComponent, // (tag is the text you will put in field's 'tag')
+}
+<FormGenerator config={config} components={components} />
+```
+
+### example
+``` js
+function Input({ config, onChange }) {
+  const { title, props, value } = config;
+
+  return (<div>
+    <label htmlFor={props && props.name}>{title}</label>
+    <input
+      type="text"
+      value={value || ''}
+      style={{ display: 'block', width: '100%' }}
+      {...props}
+      onChange={onChange}
+    />
+  </div>);
+}
+
+const components = {
+  tag: ReactComponent, // (tag is the text you will put in field's 'tag')
+}
+
+export default function App() {
+  return (
+    <div>
+        <FormGenerator config={config} components={components} />
+    </div>);
 }
 ```

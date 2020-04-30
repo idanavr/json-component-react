@@ -4,13 +4,22 @@ import InputComponent from './defaultComponents/inputComponent';
 import DDLComponent from './defaultComponents/ddlComponent';
 import ButtonComponent from './defaultComponents/buttonComponent';
 import DynamicComponent from './defaultComponents/dynamicComponent';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function ComponentFactory({ config, onInputChange, onBtnClick }) {
+export default function ComponentFactory({ config, components, onInputChange, onBtnClick }) {
     if (!config) {
         console.warn(`config is ${config}`);
     }
     const { tag: TagName = 'input', props } = config || {};
+
+    if (components && typeof (components) === 'object' && Object.keys(components).includes(TagName)) {
+        const NewComponent = components[TagName];
+        if (typeof (NewComponent) === 'function')
+            return (<NewComponent
+                config={config}
+                onChange={(e) => onInputChange(e, config)}
+            />);
+        console.warn(`${NewComponent} is not a react component.`);
+    }
 
     switch (TagName) {
         case 'input':
@@ -66,6 +75,7 @@ ComponentFactory.propTypes = {
             onClick: PropTypes.func,
         }),
     }),
+    components: PropTypes.objectOf(PropTypes.elementType),
     onInputChange: PropTypes.func,
     onBtnClick: PropTypes.func,
 };

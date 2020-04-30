@@ -2,60 +2,49 @@ import React from 'react';
 import FormGenerator from '../../src';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
-const emailValidation = (value) => (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/).test(value);
+import config from './formConfig';
 
-const config = {
-  fields: {
-    email: {
-      validation: emailValidation,
-      title: 'Email'
-    },
-    fullName: {
-      index: 1,
-      title: 'Full Name',
-      required: true,
-    },
-    habits: {
-      title: 'Habits',
-      props: {
-        placeholder: 'Habits placeholder'
-      }
-    },
-  },
-  controllers: {
-    clear: {
-      content: 'Clear',
-      props: {
-        onClick(fields, updateField) {
-          Object.keys(fields).forEach((key) => {
-            updateField(key, { value: '' });
-          })
-        }
-      }
-    },
-    submit: {
-      index: 1,
-      content: 'Submit',
-      props: {
-        onClick(fields) {
-          console.log(fields)
-        }
-      }
-    },
-  }
+function File({ config, onChange }) {
+  const { title, props } = config;
+
+  return (<div>
+    <label htmlFor={props.name}>{title}</label>
+    <input
+      type="file"
+      name={props.name}
+      style={{ display: 'block' }}
+      {...props}
+      onChange={onChange}
+    />
+  </div>);
 }
 
-const configWithArrays = {
-  fields: Object.keys(config.fields).map((key) => config.fields[key]),
-  controllers: Object.keys(config.controllers).map((key) => config.controllers[key]),
+function Input({ config, onChange }) {
+  const { title, props, value } = config;
+
+  return (<div>
+    <label htmlFor={props && props.name}>{title}</label>
+    <input
+      type="text"
+      value={value || ''}
+      style={{ display: 'block', width: '100%' }}
+      {...props}
+      onChange={onChange}
+    />
+  </div>);
 }
+
+const components = {
+  file: File,
+  input: Input,
+};
 
 export default function App() {
   return (
     <div>
       <div className="header">Module Test</div>
       <div id="form">
-        <FormGenerator config={config} />
+        <FormGenerator config={config} components={components} />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import ComponentFactory from './componentFactory/componentFactory';
 import ReactTooltip from 'react-tooltip';
 import './formGenerator.scss';
 
-export default function FormGenerator({ config }) {
+export default function FormGenerator({ config, components }) {
     if (!config || typeof (config) !== 'object') {
         console.warn(`Json Component - config should be an object, received - ${typeof (config)}`);
         return <></>;
@@ -48,6 +48,7 @@ export default function FormGenerator({ config }) {
                     config={fields[key]}
                     onInputChange={onInputChange}
                     onBtnClick={onBtnClick}
+                    components={components}
                 />
             </React.Fragment>));
     }
@@ -64,7 +65,9 @@ export default function FormGenerator({ config }) {
                 <React.Fragment key={key || uuidv4()}>
                     <ComponentFactory
                         config={controllers[key]}
+                        onInputChange={onInputChange}
                         onBtnClick={onBtnClick}
+                        components={components}
                     />
                 </React.Fragment>);
         });
@@ -176,4 +179,5 @@ FormGenerator.propTypes = {
             PropTypes.arrayOf(controllerPropType),
         ]),
     }),
+    components: PropTypes.objectOf(PropTypes.elementType),
 };
