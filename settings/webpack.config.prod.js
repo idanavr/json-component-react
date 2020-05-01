@@ -43,9 +43,6 @@ module.exports = {
                 sourceMap: false,
                 terserOptions: {
                     extractComments: 'all',
-                    compress: {
-                        drop_console: true,
-                    },
                 }
             }),
         ],

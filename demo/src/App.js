@@ -1,5 +1,5 @@
 import React from 'react';
-import FormGenerator from '../../src';
+import JsonComponent from '../../src';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import config from './formConfig';
@@ -44,7 +44,7 @@ export default function App() {
     <div>
       <div className="header">Module Test</div>
       <div id="form">
-        <FormGenerator config={config} components={components} />
+        <JsonComponent config={config} components={components} />
       </div>
     </div>
   );

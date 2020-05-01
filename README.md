@@ -1,6 +1,23 @@
 # Json-Component-React
 [![NPM Version](https://img.shields.io/npm/v/json-component-react.svg?branch=master)](https://www.npmjs.com/package/json-component-react)
 
+## Installation
+
+```
+npm install json-component-react
+```
+
+or
+
+```
+yarn add json-component-react
+```
+
+## Try it out to see how easy it is
+
+[![Sample project for using the package](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/json-component-react-j03v6?file=/src/App.js)
+
+## Basic example
 The package has default components based on `Reactstrap` so in case of using those components, you have to import `Bootstrap` css and our base css.
 
 ``` js
@@ -8,13 +25,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "json-component-react/dist/main.css";
 ```
 
-## Try it out to see how easy it is
-
-[![Sample project for using the package](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/json-component-react-j03v6?file=/src/App.js)
-
-### Basic example
-
-``` js
+``` jsx
 import JsonComponent from "json-component-react";
 const config = {
   fields: {
@@ -86,25 +97,25 @@ If 'fields' is an object, each field key copied to be props.name.
 }
 ```
 ## Use Your Own Components
-
+### Implementation
 In case you have your own components you want to use, you have to add the prop `components` to Json-Component.
 
 You components will inherit 2 props: 
 - config - all of the configuration you set in your json for this component, so you can make your component as dynamic as possible.
 - onChange - this will enable the onChange method mentioned above, to update the Json-Component State.
 
-### How To Implementation
-
-``` ts
+``` jsx
 const components = {
   [tag]: ReactComponent, // (tag is the text you will put in field's 'tag')
 }
-<FormGenerator config={config} components={components} />
+<JsonComponent config={config} components={components} />
 ```
 
-### example
-``` js
-function Input({ config, onChange }) {
+### Example
+``` jsx
+import JsonComponent from "json-component-react";
+
+function InputComponent({ config, onChange }) {
   const { title, props, value } = config;
 
   return (<div>
@@ -112,21 +123,40 @@ function Input({ config, onChange }) {
     <input
       type="text"
       value={value || ''}
-      style={{ display: 'block', width: '100%' }}
+      style={{
+        display: 'block',
+        width: '100%',
+        padding: '5px',
+        borderRadius: '5px'
+      }}
       {...props}
       onChange={onChange}
     />
   </div>);
 }
 
+const config = {
+  fields: {
+    fullName: {
+      tag: 'tagName',
+      title: 'Full Name'
+    }
+  }
+};
+
 const components = {
-  tag: ReactComponent, // (tag is the text you will put in field's 'tag')
-}
+  tagName: InputComponent
+};
 
 export default function App() {
   return (
-    <div>
-        <FormGenerator config={config} components={components} />
+    <div
+      style={{
+        width: '200px',
+        margin: 'auto',
+        fontFamily: 'arial'
+      }}>
+      <JsonComponent config={config} components={components} />
     </div>);
 }
 ```

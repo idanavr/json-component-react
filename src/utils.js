@@ -40,9 +40,9 @@ export function isEmpty(value) {
 export function convertValueType(value, type = 'string') {
     switch (type) {
         case 'number': {
-            const newValue = parseInt(value);
+            const newValue = Number(value);
             if (isNaN(newValue) || typeof (newValue) !== 'number')
-                console.error(`Convertion of ${value} to integer failed, new value is: ${newValue}`);
+                console.error(`Convertion of ${value} to integer failed.\n New value is: ${newValue}`);
             return newValue;
         }
 
@@ -72,7 +72,9 @@ export function convertFieldsValueType(fields) {
 }
 
 export function sortFieldsByIndex(a, b) {
-    if (!a.index && !b.index)
+    if (!a || !b)
+        return 0;
+    else if (!a.index && !b.index)
         return 0;
     else if (!b.index)
         return -1;

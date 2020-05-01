@@ -6,8 +6,9 @@ import ButtonComponent from './defaultComponents/buttonComponent';
 import DynamicComponent from './defaultComponents/dynamicComponent';
 
 export default function ComponentFactory({ config, components, onInputChange, onBtnClick }) {
-    if (!config) {
-        console.warn(`config is ${config}`);
+    if (!config || typeof (config) !== 'object') {
+        console.warn(`Each field configuration should be an object.\n Received - ${config}`);
+        return <></>;
     }
     const { tag: TagName = 'input', props } = config || {};
 

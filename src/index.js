@@ -8,7 +8,7 @@ import './formGenerator.scss';
 
 export default function FormGenerator({ config, components }) {
     if (!config || typeof (config) !== 'object') {
-        console.warn(`Json Component - config should be an object, received - ${typeof (config)}`);
+        console.warn(`Json Component - config should be an object.\n Received - ${config}`);
         return <></>;
     }
     const { controllers } = config;
