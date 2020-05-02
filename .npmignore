@@ -12,9 +12,11 @@ CHANGELOG.md
 example/
 settings/
 demo/
+etc/
 .eslintrc
 tsconfig.json
 
 // setting files
 .babelrc
 .travis.yml
+.circleci/
