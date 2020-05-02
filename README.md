@@ -13,7 +13,7 @@ or
 yarn add json-component-react
 ```
 
-## Try it out to see how easy it is
+## Try it out to see how simple it is
 
 [![Sample project for using the package](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/json-component-react-j03v6?file=/src/App.js)
 
@@ -100,9 +100,10 @@ If 'fields' is an object, each field key copied to be props.name.
 ### Implementation
 In case you have your own components you want to use, you have to add the prop `components` to Json-Component.
 
-You components will inherit 2 props: 
+Your components will inherit the following props: 
 - config - all of the configuration you set in your json for this component, so you can make your component as dynamic as possible.
-- onChange - this will enable the onChange method mentioned above, to update the Json-Component State.
+- onChange(e) - this will enable the onChange method mentioned above in field's props, with function to update the Json-Component state.
+- onClick() - this will enable the onClick method mentioned above in field's props, with function to update the Json-Component state.
 
 ``` jsx
 const components = {

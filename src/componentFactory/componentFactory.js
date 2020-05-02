@@ -11,13 +11,16 @@ export default function ComponentFactory({ config, components, onInputChange, on
         return <></>;
     }
     const { tag: TagName = 'input', props } = config || {};
+    const componentOnChange = (e) => onInputChange && onInputChange(e, config);
+    const componentOnClick = () => onBtnClick && onBtnClick(props);
 
     if (components && typeof (components) === 'object' && Object.keys(components).includes(TagName)) {
         const NewComponent = components[TagName];
         if (typeof (NewComponent) === 'function')
             return (<NewComponent
                 config={config}
-                onChange={(e) => onInputChange(e, config)}
+                onChange={componentOnChange}
+                onClick={componentOnClick}
             />);
         console.warn(`${NewComponent} is not a react component.`);
     }
@@ -26,28 +29,28 @@ export default function ComponentFactory({ config, components, onInputChange, on
         case 'input':
             return <InputComponent
                 config={config}
-                onChange={(e) => onInputChange(e, config)}
+                onChange={componentOnChange}
             />;
 
         case 'ddl':
         case 'select':
             return <DDLComponent
                 config={config}
-                onChange={(e) => onInputChange(e, config)}
+                onChange={componentOnChange}
             />;
 
         case 'button':
         case 'btn':
             return <ButtonComponent
                 config={config}
-                onClick={(e) => onBtnClick && onBtnClick(e, props)}
+                onClick={componentOnClick}
                 className="dynamic-field-component"
             />;
 
         case 'btn-controller':
             return <ButtonComponent
                 config={config}
-                onClick={(e) => onBtnClick && onBtnClick(e, props)}
+                onClick={componentOnClick}
                 className="dynamic-controller-component"
             />;
 
@@ -75,7 +78,7 @@ ComponentFactory.propTypes = {
             name: PropTypes.string,
             onClick: PropTypes.func,
         }),
-    }),
+    }).isRequired,
     components: PropTypes.objectOf(PropTypes.elementType),
     onInputChange: PropTypes.func,
     onBtnClick: PropTypes.func,

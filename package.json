@@ -63,9 +63,10 @@
   },
   "keywords": [
     "react",
-    "form",
     "json",
-    "generator"
+    "component",
+    "generator",
+    "form"
   ],
   "author": "Idan Avrahami",
   "license": "MIT"

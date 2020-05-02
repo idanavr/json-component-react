@@ -143,7 +143,7 @@ export default function FormGenerator({ config, components }) {
     }
     // #endregion
 
-    function onBtnClick(e, props) {
+    function onBtnClick(props) {
         const { onClick: configOnClick } = props;
         if (configOnClick) {
             const convertedFields = convertFieldsValueType(fields);
@@ -178,6 +178,6 @@ FormGenerator.propTypes = {
             controllerPropType,
             PropTypes.arrayOf(controllerPropType),
         ]),
-    }),
+    }).isRequired,
     components: PropTypes.objectOf(PropTypes.elementType),
 };

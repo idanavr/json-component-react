@@ -12,23 +12,20 @@ export const config = {
             required: true,
         },
         habits: {
+            tag: 'myInput',
             title: 'Habits',
             props: {
-                placeholder: 'Habits placeholder'
-            }
-        },
-        fileTest: {
-            tag: 'file',
-            title: 'New Component Test',
-            props: {
-                placeholder: 'New component placeholder'
+                placeholder: 'Habits placeholder',
+                className: 'my-input',
             }
         },
     },
     controllers: {
         clear: {
+            tag: 'myBtn',
             content: 'Clear',
             props: {
+                className: 'my-btn',
                 onClick(fields, updateField) {
                     Object.keys(fields).forEach((key) => {
                         updateField(key, { value: '' });
@@ -49,8 +46,8 @@ export const config = {
 };
 
 export const configWithArrays = {
-    fields: Object.keys(config.fields).map((key) => config.fields[key]),
-    controllers: Object.keys(config.controllers).map((key) => config.controllers[key]),
+    fields: config.fields && Object.keys(config.fields).map((key) => config.fields[key]),
+    controllers: config.controllers && Object.keys(config.controllers).map((key) => config.controllers[key]),
 }
 
 export default config;

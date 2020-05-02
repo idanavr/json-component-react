@@ -12,7 +12,31 @@ $form-width: 600px;
     width: $form-width;
     border: 1px solid;
     border-radius: 15px;
-    padding: 30px
+    padding: 30px;
+
+    .my-input-container {
+        margin: 0px 10px 20px 10px;
+
+        .my-input {
+            display: block;
+            width: 50%;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    }
+
+    .my-btn-container {
+        flex: 1;
+
+        .my-btn {
+            width: 100%;
+            height: 100%;
+            margin-left: 5px;
+            border: 1px solid #00000026;
+            border-radius: 5px;
+            background: #482f2f52;
+        }
+    }
 }
 
 @media only screen and (max-width: $form-width + 50px) {
