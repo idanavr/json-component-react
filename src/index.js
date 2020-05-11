@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { fieldsSetup, convertValueType, convertFieldsValueType, isEmpty, sortFieldsByIndex } from './utils';
 import ComponentFactory from './componentFactory/componentFactory';
 import ReactTooltip from 'react-tooltip';
-import './formGenerator.scss';
+import './main.scss';
 
 export default function FormGenerator({ config, components }) {
     if (!config || typeof (config) !== 'object') {
