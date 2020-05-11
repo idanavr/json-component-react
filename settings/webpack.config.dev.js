@@ -38,11 +38,6 @@ module.exports = {
             },
             {
                 exclude: /node_modules/,
-                test: /\.(tsx)$/,
-                loader: 'ts-loader'
-            },
-            {
-                exclude: /node_modules/,
                 test: /\.json$/,
                 loader: 'json-loader'
             },
@@ -60,6 +55,6 @@ module.exports = {
             }]
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.ts']
     }
 };
