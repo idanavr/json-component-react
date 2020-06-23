@@ -101,7 +101,7 @@ If 'fields' is an object, each field key copied to be props.name.
 In case you have your own components you want to use, you have to add the prop `components` to Json-Component.
 
 Your components will inherit the following props: 
-- config - all of the configuration you set in your json for this component, so you can make your component as dynamic as possible.
+- config - the configuration you have set for this component, so you can make your component as dynamic as possible.
 - onChange(e) - this will enable the onChange method mentioned above in field's props, with function to update the Json-Component state.
 - onClick() - this will enable the onClick method mentioned above in field's props, with function to update the Json-Component state.
 

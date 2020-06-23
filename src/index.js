@@ -34,7 +34,7 @@ export default function FormGenerator({ config, components }) {
             <div className="dynamic-form-controllers">
                 {FormControllers}
             </div>
-            <ReactTooltip className="toolTip" place="left" type="dark" effect="solid" offset={{ left: 40 }} />
+            <ReactTooltip className="toolTip" place="left" type="dark" effect="solid" />
         </div>);
 
     function getFormFields() {

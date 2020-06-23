@@ -10,6 +10,7 @@ export default function DDLComponent({ config, onChange }) {
             <Label for={props.name} data-tip={dataTip}>{title}</Label>
             <Input
                 {...props}
+                type="select"
                 value={value}
                 invalid={isValid === false}
                 valid={isValid}
