@@ -46,10 +46,11 @@ exports[`matches snapshot 1`] = `
     </div>
     <myInput
       className="my-input"
-      onChange={[Function]}
-      onClick={[Function]}
       placeholder="Habits placeholder"
-    />
+    >
+       
+       
+    </myInput>
   </div>
   <div
     className="dynamic-form-controllers"
@@ -64,10 +65,11 @@ exports[`matches snapshot 1`] = `
     </button>
     <myBtn
       className="my-btn"
-      onChange={[Function]}
       onClick={[Function]}
     >
+       
       Clear
+       
     </myBtn>
   </div>
 </div>
