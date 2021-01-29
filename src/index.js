@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { fieldsSetup, convertValueType, convertFieldsValueType, isEmpty, sortFieldsByIndex } from './utils';
 import ComponentFactory from './componentFactory/componentFactory';
-import ReactTooltip from 'react-tooltip';
 import './main.scss';
 
 export default function FormGenerator({ config, components }) {
@@ -34,7 +33,6 @@ export default function FormGenerator({ config, components }) {
             <div className="dynamic-form-controllers">
                 {FormControllers}
             </div>
-            <ReactTooltip className="toolTip" place="left" type="dark" effect="solid" />
         </div>);
 
     function getFormFields() {

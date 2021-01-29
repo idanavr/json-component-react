@@ -2,11 +2,9 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const rootFolder = path.join(__dirname, '..');
 
 module.exports = {
-    devtool: 'source-map',
     entry: [
         './src/index.js'
     ],
@@ -28,24 +26,13 @@ module.exports = {
         new OptimizeCssAssetsPlugin({
             cssProcessorOptions: { discardComments: { removeAll: true } }
         }),
-        new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
     ],
     optimization: {
-        minimizer: [
-            new TerserPlugin({
-                extractComments: true,
-                cache: true,
-                parallel: true,
-                sourceMap: false,
-                terserOptions: {
-                    extractComments: 'all',
-                }
-            }),
-        ],
+        minimize: true
     },
     module: {
         rules:

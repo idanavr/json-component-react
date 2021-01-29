@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  id="dynamic-form"
+>
+  <div
+    className="dynamic-form-fields"
+  >
+    <div
+      className="dynamic-field-component form-group"
+    >
+      <label
+        className=""
+      >
+        Email
+      </label>
+      <input
+        aria-invalid={false}
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Email"
+        type="text"
+        value=""
+      />
+      
+    </div>
+    <div
+      className="dynamic-field-component form-group"
+    >
+      <label
+        className=""
+        data-tip="First Name and Last Name"
+      >
+        Full Name
+      </label>
+      <input
+        aria-invalid={false}
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Full Name"
+        type="text"
+        value=""
+      />
+      
+    </div>
+    <myInput
+      className="my-input"
+      onChange={[Function]}
+      onClick={[Function]}
+      placeholder="Habits placeholder"
+    />
+  </div>
+  <div
+    className="dynamic-form-controllers"
+  >
+    <button
+      aria-label={null}
+      className="dynamic-controller-component  btn btn-secondary"
+      onClick={[Function]}
+      type="button"
+    >
+      Submit
+    </button>
+    <myBtn
+      className="my-btn"
+      onChange={[Function]}
+      onClick={[Function]}
+    >
+      Clear
+    </myBtn>
+  </div>
+</div>
+`;

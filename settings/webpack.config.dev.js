@@ -22,7 +22,9 @@ module.exports = {
         port: 8080
     },
     plugins: [
-        new MiniCssExtractPlugin('main.css'),
+        new MiniCssExtractPlugin({
+            filename: 'main.css'
+        }),
         new HtmlWebpackPlugin({
             template: path.join(demoFolder, 'src/index.html'),
             inject: true
