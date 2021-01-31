@@ -66,7 +66,6 @@ If 'fields' is an object, each field key copied to be props.name.
         "index": number, // (optional) - in order to define the order of the components
         "tag": string, // (default: input) input/select/btn/btn-controller
         "title": string, // (optional)
-        "dataTip": string // (optional) -  show tip on hover
         "validation": function (value) { }, // (optional)
         "defaultMsg": string, // (optional)
         "required": boolean, // (optional)

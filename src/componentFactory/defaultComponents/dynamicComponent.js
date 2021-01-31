@@ -20,7 +20,6 @@ DynamicComponent.propTypes = {
         // value: PropTypes.string,
         // isValid: PropTypes.bool,
         // defaultErrMsg: PropTypes.string,
-        // dataTip: PropTypes.string,
         props: PropTypes.shape({
             // name: PropTypes.string,
             // onClick: PropTypes.func,

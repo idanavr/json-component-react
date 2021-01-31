@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 export default function InputComponent({ config, onChange }) {
-    const { title, value, props, isValid, defaultErrMsg: errMsg, dataTip } = config;
+    const { title, value, props, isValid, defaultErrMsg: errMsg } = config;
 
     return (
         <FormGroup className="dynamic-field-component">
-            <Label for={props && props.name} data-tip={dataTip}>{title}</Label>
+            <Label for={props && props.name}>{title}</Label>
             <Input
                 placeholder={title}
                 {...props}
@@ -26,7 +26,6 @@ InputComponent.propTypes = {
         value: PropTypes.string,
         isValid: PropTypes.bool,
         defaultErrMsg: PropTypes.string,
-        dataTip: PropTypes.string,
         props: PropTypes.shape({
             name: PropTypes.string,
             onClick: PropTypes.func,

@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { FormGroup, Label, Input } from 'reactstrap';
 
 export default function DDLComponent({ config, onChange }) {
-    const { title, value, props, isValid, dataTip, options } = config;
+    const { title, value, props, isValid, options } = config;
     return (
         <FormGroup className="dynamic-field-component">
-            <Label for={props.name} data-tip={dataTip}>{title}</Label>
+            <Label for={props.name}>{title}</Label>
             <Input
                 {...props}
                 type="select"
@@ -27,7 +27,6 @@ DDLComponent.propTypes = {
         title: PropTypes.string,
         value: PropTypes.string,
         isValid: PropTypes.bool,
-        dataTip: PropTypes.string,
         options: PropTypes.arrayOf(PropTypes.shape({
             value: PropTypes.any.isRequired,
             text: PropTypes.string.isRequired,

@@ -68,7 +68,6 @@ ComponentFactory.propTypes = {
         value: PropTypes.string,
         isValid: PropTypes.bool,
         defaultErrMsg: PropTypes.string,
-        dataTip: PropTypes.string,
         options: PropTypes.arrayOf(PropTypes.shape({
             value: PropTypes.any.isRequired,
             text: PropTypes.string.isRequired,

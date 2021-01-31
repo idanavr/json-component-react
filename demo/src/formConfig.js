@@ -9,7 +9,6 @@ export const config = {
         fullName: {
             index: 1,
             title: 'Full Name',
-            dataTip: 'First Name and Last Name',
             required: true,
         },
         habits: {
